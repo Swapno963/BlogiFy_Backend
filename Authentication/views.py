@@ -1,12 +1,13 @@
 from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .serializer import RegistrationSerializer,UserLoginSerializer
+from .serializer import RegistrationSerializer,UserLoginSerializer,UserProfileSerializer
 from rest_framework.views import APIView
 from django.contrib.auth import authenticate,login
 from rest_framework.authtoken.models import Token
 from rest_framework import status
 from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework.permissions import IsAuthenticated
 
 @api_view(['GET'])
 def getRoutes(request):
@@ -26,7 +27,7 @@ class UserRegistrationApiView(APIView):
             return Response("Form Submission Done")
         return Response(serializer.errors)
     
-class UserLoginApiView(APIView):
+class UserLoginApiView(APIView):   
     def post(self, request):
         serializer = UserLoginSerializer(data = self.request.data)
         if serializer.is_valid():
@@ -55,3 +56,19 @@ class UserLoginApiView(APIView):
             else:
                 return Response({'error': 'Invalid credentials'})
         return Response(serializer.errors)
+    
+    
+class ProfileAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+    def get(self,request):
+        user = request.user
+        serializer = UserProfileSerializer(user)
+        return Response(serializer.data)
+    
+    def patch(self, request):
+        user = request.user
+        serializer = UserProfileSerializer(user, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

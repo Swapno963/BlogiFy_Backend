@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
+
 # Create your views here.
 from . import models
 from . import serializers
@@ -13,5 +15,7 @@ class CommentViewset(viewsets.ModelViewSet):
     serializer_class = serializers.CommentUsSerializer
 
 class TagViewset(viewsets.ModelViewSet):
+    # permission_classes = [IsAuthenticated] 
+
     queryset = models.Tag.objects.all()
     serializer_class = serializers.TagUsSerializer

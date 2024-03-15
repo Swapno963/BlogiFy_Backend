@@ -44,8 +44,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'corsheaders', 
 ]
-# for image 
-MEDIA_URL = '/media/'
+
 # MEDIA_ROOT = path.join(BASE_DIR, 'media')
 
 MIDDLEWARE = [
@@ -70,7 +69,7 @@ from datetime import timedelta
 
 
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=50),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
     "ROTATE_REFRESH_TOKENS": False, # aita true korla, user active thakle token renew hobe
     "BLACKLIST_AFTER_ROTATION": False, # akber refresh token dila aita new refresh r accesss token dibe but ager refresh token jate use na kora jai tai aita true korte hobe, r install app add korte hoeb 'rest_framework_simplejwt.token_blacklist',
@@ -178,7 +177,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-
+MEDIA_URL = '/media/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 

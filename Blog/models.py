@@ -3,10 +3,15 @@ from Authentication.models import Author
 # Create your models here.
 class Tag(models.Model):
     name = models.CharField(max_length=50)
+
+    def __str__(self) -> str:
+        return self.name
     
 class Comments(models.Model):
     content = models.CharField(max_length=100)
     author = models.ForeignKey(Author,  on_delete=models.CASCADE)
+    def __str__(self) -> str:
+        return self.content
 
     
 class Blog(models.Model):
@@ -17,3 +22,6 @@ class Blog(models.Model):
     tag = models.ManyToManyField(Tag)
     likes = models.IntegerField()
     comments = models.ForeignKey(Author,  on_delete=models.CASCADE,related_name='blog_commentor')
+    
+    def __str__(self) -> str:
+        return self.title

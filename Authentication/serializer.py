@@ -6,7 +6,11 @@ class AuthorSerializer(serializers.ModelSerializer):
         model = models.Author
         fields = '__all__'
         
-        
+
+class UserProfileSerializer(serializers.ModelSerializer):
+    class  Meta:
+        model = User
+        fields = ['username', 'first_name', 'last_name', 'email']
 # for registration
 
 class RegistrationSerializer(serializers.ModelSerializer):
