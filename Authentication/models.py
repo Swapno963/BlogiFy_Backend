@@ -7,4 +7,5 @@ class Author(models.Model):
     avatar = models.FileField(upload_to='blog_img/')
     
     def __str__(self) -> str:
-        return self.firstName
+        return f'{self.firstName} {self.lastName}'
+    

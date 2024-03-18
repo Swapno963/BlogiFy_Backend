@@ -22,17 +22,10 @@ with open(image_path, 'rb') as file:
     # Prepare the files parameter with the image file
     files = {'thumbnail': file}
 
-    blogData = {
-        "title": "This is new blog",
-        "content": "hello everyone ",
-        "likes": 1,
-        "author": 1,
-        # "author": 'gfdg',
-        "comments": 1,
-        "tag": [1]
-    }
+    blogData = {'author':2,'tag':[1],'title':'this is title','content': '3','likes':0}
 
-    response = requests.post(f"{baseUrl}/blog/blog/", headers=headers, data=blogData, files=files)
+    response = requests.post(f"{baseUrl}/blogs/blogPost/", headers=headers, data=blogData)
+    # response = requests.post(f"{baseUrl}/blogs/blogPost/", headers=headers, data=blogData, files=files)
     # response = requests.get("http://127.0.0.1:8000/auth/profile/")
 
     # response_json = response.json()

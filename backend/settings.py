@@ -57,8 +57,16 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
+        'corsheaders.middleware.CorsMiddleware',
+
 ]
 CORS_ALLOW_ALL_ORIGINS=True
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ALLOW_CREDENTIALS = True  # If you're using cookies or sessions for authentication
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000',  # Add the URL of your React frontend
+    # Add other origins as needed
+]
 # for jwt 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -66,7 +74,11 @@ REST_FRAMEWORK = {
     )
 }
 from datetime import timedelta
-
+# for email and password login
+AUTHENTICATION_BACKENDS = [
+    'Authentication.backends.EmailAuthBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=50),

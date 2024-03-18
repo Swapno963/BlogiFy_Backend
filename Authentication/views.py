@@ -8,6 +8,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework import status
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import IsAuthenticated
+from django.contrib.auth.models import User
 
 @api_view(['GET'])
 def getRoutes(request):
@@ -26,15 +27,17 @@ class UserRegistrationApiView(APIView):
             user = serializer.save()
             return Response("Form Submission Done")
         return Response(serializer.errors)
-    
+      
+        
+        
 class UserLoginApiView(APIView):   
     def post(self, request):
         serializer = UserLoginSerializer(data = self.request.data)
         if serializer.is_valid():
-            username = serializer.validated_data['username']
+            email = serializer.validated_data['email']
             password = serializer.validated_data['password']
 
-            user = authenticate(username= username, password=password)
+            user = authenticate(email= email, password=password)
             
             if user:
                 refresh = RefreshToken.for_user(user)
@@ -54,7 +57,7 @@ class UserLoginApiView(APIView):
                 }, status=status.HTTP_200_OK)
             
             else:
-                return Response({'error': 'Invalid credentials'})
+                return Response({'error': user})
         return Response(serializer.errors)
     
     
@@ -72,3 +75,12 @@ class ProfileAPIView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class ShowProfile(APIView):
+    def get(self, request, pk):
+        try:
+            user_profile = User.objects.get(pk=pk)
+            serializer = UserProfileSerializer(user_profile)
+            return Response(serializer.data)
+        except User.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
