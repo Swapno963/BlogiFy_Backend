@@ -5,13 +5,13 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from . import views
 router = DefaultRouter() # amader router
+router.register('blog', views.BlogViewset , basename='blogpost1') 
 
-router.register('blog', views.BlogViewset) # for normal blog
-# router.register('blogPost', views.BlogPostViewSet) # router er antena
-router.register('blogPost2', views.BlogPostViewSet2) # router er antena
-# router.register('comment', views.CommentViewset) # router er antena
-router.register('tag', views.TagViewset) # router er antena
-# router.register('popular', views.PopularBlogViewSet) # router er antena
+router2 = DefaultRouter()
+router2.register('blogPost2', views.BlogPostViewSet2 , basename='blogpost2') 
+
+router3 = DefaultRouter()
+router3.register('tag', views.TagViewset, basename='blogpost3') 
 urlpatterns = [
     path('', include(router.urls)),
     path('popular/', views.BlogPostViewSet.as_view({'get': 'most_popular'}), name='most_popular'),
