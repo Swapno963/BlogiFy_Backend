@@ -59,7 +59,7 @@ class BlogPostViewSet2(viewsets.ModelViewSet):
 
 class CommentPostViewSet(viewsets.ModelViewSet):
     queryset = models.Comments.objects.all()
-    serializer_class = serializers.CommentUsSerializer
+    serializer_class = serializers.ShowCommentUs
     permission_classes = [IsAuthenticated]
 
     def create(self, request, *args, **kwargs):
@@ -69,7 +69,10 @@ class CommentPostViewSet(viewsets.ModelViewSet):
             blog_post = models.Blog.objects.get(id=blog_post_id)
         except models.Blog.DoesNotExist:
             return Response({'error': 'Blog post does not exist.'})
-
+        
+        # request.data['blog'] = blog_post.id
+        # request.data['author'] = request.user.first_name
+        
         serializer = serializers.CommentUsSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
@@ -92,3 +95,21 @@ class TagViewset(viewsets.ModelViewSet):
 #     serializer_class = serializers.BlogSerializer
 #     filter_backends = [filters.SearchFilter]
 #     search_fields = ['title']
+
+
+class BlogLoverViewSet(viewsets.ModelViewSet):
+    # queryset = models.BlogLover.objects.all()
+    serializer_class = serializers.LoveBlogSerializer
+    permission_classes = [IsAuthenticated]
+    
+    
+    def get_queryset(self):
+        # Filter queryset to show only data associated with the currently authenticated user
+        return models.BlogLover.objects.filter(lover=self.request.user)
+    
+    def post(self,request):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid(): # json data valid hoile er condition e jabe
+            user = serializer.save()
+            return Response("Form Submission Done")
+        return Response(serializer.errors)

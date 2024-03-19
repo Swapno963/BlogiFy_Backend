@@ -32,3 +32,10 @@ class Comments(models.Model):
     blog = models.ForeignKey(Blog,  on_delete=models.CASCADE, null= True, blank=True,related_name='comment_writer')
     def __str__(self) -> str:
         return self.content
+    
+class BlogLover(models.Model):
+    createdAt = models.DateTimeField(auto_now_add=True,null=True, blank=True)
+    lover = models.ForeignKey(User,  on_delete=models.CASCADE)
+    blog = models.ForeignKey(Blog,  on_delete=models.CASCADE, null= True, blank=True,related_name='blog_lover')
+    def __str__(self) -> str:
+        return f"{self.lover}-{self.blog}"
