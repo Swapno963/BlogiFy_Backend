@@ -13,10 +13,10 @@ class Tag(models.Model):
     
 class Blog(models.Model):
     title = models.CharField(max_length=300)
-    content = models.CharField(max_length=500)
+    content = models.CharField(max_length=1000)
     thumbnail = models.FileField(upload_to='blog_img/',null=True, blank=True)
     # author = models.ForeignKey(Author,  on_delete=models.CASCADE,related_name='blog_author')
-    tag = models.ManyToManyField(Tag)
+    tag = models.ManyToManyField(Tag, null= True, blank=True,)
     likes = models.IntegerField()
     createdAt = models.DateTimeField(auto_now_add=True,null=True, blank=True)
     # userLikes = models.ManyToManyField(Author, related_name='liked_posts', blank=True)

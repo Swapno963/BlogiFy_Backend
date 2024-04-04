@@ -10,10 +10,10 @@ class AuthorSerializer(serializers.ModelSerializer):
 
 class UserProfileSerializer(serializers.ModelSerializer):
     BlogUser = BlogCommentSerializer(many=True, read_only=True)
-
+    bio = serializers.CharField(default = '')
     class  Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name', 'email','BlogUser']
+        fields = ['username', 'first_name', 'last_name', 'email','BlogUser','bio']
 # for registration
 
 class RegistrationSerializer(serializers.ModelSerializer):

@@ -31,6 +31,22 @@ class BlogViewset(viewsets.ModelViewSet):
         blog_post.save()
         return Response({'Count': blog_post.likes})
     
+# class WriteBlog(viewsets.ModelViewSet):
+#     queryset = models.Blog.objects.all()
+#     serializer_class = serializers.WriteBlogSerializer
+    
+#     def post(self,request):
+#         print(request.data)
+#         serializer = self.serializer_class(data=request.data)
+#         if serializer.is_valid(): # json data valid hoile er condition e jabe
+#             user = serializer.save()
+#             return Response(serializer.data)
+#         return Response(serializer.errors)
+    
+    
+class WriteBlog(viewsets.ModelViewSet):
+    queryset = models.Blog.objects.all()
+    serializer_class = serializers.WriteBlogSerializer
     
 class BlogPostViewSet(viewsets.ModelViewSet):
     queryset = models.Blog.objects.all()

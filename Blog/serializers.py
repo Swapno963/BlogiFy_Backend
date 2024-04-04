@@ -33,6 +33,11 @@ class BlogPostSerializer(serializers.ModelSerializer):
         # fields = '__all__'
 
             
+class WriteBlogSerializer(serializers.ModelSerializer):    
+        class Meta:
+            model = models.Blog
+            fields = ['title','thumbnail','content','likes','user','id'] 
+            
             
             
 class BlogSerializer(serializers.ModelSerializer):
