@@ -1,5 +1,6 @@
 # Blogging Platform Project
-### backend server = https://blogify-backend-vstx.onrender.com/
+### Live site = https://blogify-teal-three.vercel.app/
+### Backend server = https://blogify-backend-vstx.onrender.com/
 
 ## Description
 
