@@ -45,6 +45,8 @@ class BlogViewset(viewsets.ModelViewSet):
     
     
 class WriteBlog(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
+
     queryset = models.Blog.objects.all()
     serializer_class = serializers.WriteBlogSerializer
     

@@ -77,6 +77,8 @@ class ProfileAPIView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 class ShowProfile(APIView):
+    permission_classes = [IsAuthenticated]
+
     def get(self, request, pk):
         try:
             user_profile = User.objects.get(pk=pk)

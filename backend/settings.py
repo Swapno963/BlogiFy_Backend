@@ -81,9 +81,9 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=50),
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=1),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
-    "ROTATE_REFRESH_TOKENS": False, # aita true korla, user active thakle token renew hobe
+    "ROTATE_REFRESH_TOKENS": True, # aita true korla, user active thakle token renew hobe
     "BLACKLIST_AFTER_ROTATION": False, # akber refresh token dila aita new refresh r accesss token dibe but ager refresh token jate use na kora jai tai aita true korte hobe, r install app add korte hoeb 'rest_framework_simplejwt.token_blacklist',
     "UPDATE_LAST_LOGIN": False,
 
