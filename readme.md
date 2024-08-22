@@ -1,6 +1,8 @@
 # Blogging Platform Project
+
 ### Live site = https://blogify-teal-three.vercel.app/
-### Backend server = https://blogify-backend-vstx.onrender.com/
+
+### Backend server = https://blogifybackend-production.up.railway.app/
 
 ## Description
 
@@ -52,8 +54,6 @@ This project is a blogging platform with various features implemented using Reac
 - Error Handling
 - CSS for styling
 
-
-
 ## Live Site
 
 You can access the live site [here](https://blogify-teal-three.vercel.app/).
@@ -71,3 +71,35 @@ To access the admin panel, you'll need administrative privileges. Please use the
 
 - **Username:** admin
 - **Password:** 123
+
+## Setup instruction
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/Swapno963/BlogiFy_Backend.git
+
+cd BlogiFy_Backend
+
+pip install -r requirements.txt
+
+```
+
+### 1. To run test case
+
+```bash
+ python manage.py test
+```
+
+## Accessing the Admin Panel
+
+Please use the following credentials:
+
+- **Username:** admin
+- **Password:** 12
+
+## Contact
+
+If you have any questions or feedback, feel free to contact me:
+
+- Swapno Mondol - [Linkedin](https://www.linkedin.com/in/swapno-mondol/)- [Facebook](https://www.facebook.com/profile.php?id=100090206887787) - swapno963@gmail.com
