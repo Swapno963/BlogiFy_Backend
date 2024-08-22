@@ -26,6 +26,6 @@ urlpatterns = [
     # path('comment/delete/<int:pk>/', views.CommentPostViewSet.as_view()),
     # path('blogPost2', views.BlogPostViewSet2.as_view({'post': 'create_blog_post'})),
     path('love/',views.BlogLoverViewSet.as_view({'get': 'list'})),
-    path('write/',views.WriteBlog.as_view({'post': 'create'}))
+    path('write/',views.WriteBlog.as_view({'post': 'create'})),
 
 ]

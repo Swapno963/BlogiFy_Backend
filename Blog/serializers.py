@@ -113,3 +113,5 @@ class LoveBlogSerializer(serializers.ModelSerializer):
         })
         return data
         
+        
+        

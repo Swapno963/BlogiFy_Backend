@@ -30,6 +30,16 @@ class BlogViewset(viewsets.ModelViewSet):
         blog_post.likes += 1
         blog_post.save()
         return Response({'Count': blog_post.likes})
+   
+
+    
+    
+    
+    
+    
+    
+    
+    
     
 # class WriteBlog(viewsets.ModelViewSet):
 #     queryset = models.Blog.objects.all()
